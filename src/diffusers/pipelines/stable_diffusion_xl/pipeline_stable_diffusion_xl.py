@@ -535,6 +535,24 @@ class StableDiffusionXLPipeline(
     def prepare_ip_adapter_image_embeds(
         self, ip_adapter_image, ip_adapter_image_embeds, device, num_images_per_prompt, do_classifier_free_guidance
     ):
+        r"""
+        Prepares image embeddings for IP-Adapter.
+
+        Args:
+            ip_adapter_image (`PipelineImageInput`): 
+                The image to generate embeddings for IP-Adapter.
+            ip_adapter_image_embeds (`List[torch.Tensor]`): 
+                Pre-computed image embeddings for IP-Adapter. If provided, `ip_adapter_image` is ignored.
+            device (`str` or `torch.device`): 
+                The device to put the embeddings on.
+            num_images_per_prompt (`int`): 
+                The number of images that should be generated per prompt
+            do_classifier_free_guidance (`bool`): 
+                Whether to use classifier-free guidance.
+
+        Returns:
+            `torch.Tensor`: The prepared image embeddings for IP-Adapter.
+        """
         image_embeds = []
         if do_classifier_free_guidance:
             negative_image_embeds = []
